@@ -29,6 +29,7 @@ import java.util.Map;
  * @author Jonathan Bullock <jonbullock@gmail.com>
  */
 public class Parser {
+    private static final String HEADER_SEPARATOR = "//~~~~~~";
     private final static Logger LOGGER = LoggerFactory.getLogger(Parser.class);
 
     private CompositeConfiguration config;
@@ -151,7 +152,7 @@ public class Parser {
                     statusFound = true;
                 }
             }
-            if (line.equals("~~~~~~")) {
+            if (line.equals(HEADER_SEPARATOR)) {
                 headerSeparatorFound = true;
                 header.remove(line);
                 break;
@@ -182,7 +183,7 @@ public class Parser {
      */
     private void processHeader(List<String> contents, final Map<String, Object> content) {
         for (String line : contents) {
-            if (line.equals("~~~~~~")) {
+            if (line.equals(HEADER_SEPARATOR)) {
                 break;
             } else {
                 String[] parts = line.split("=",2);
@@ -223,7 +224,7 @@ public class Parser {
             if (inBody) {
                 body.append(line).append("\n");
             }
-            if (line.equals("~~~~~~")) {
+            if (line.equals(HEADER_SEPARATOR)) {
                 inBody = true;
             }
         }
