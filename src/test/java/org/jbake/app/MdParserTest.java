@@ -59,9 +59,9 @@ public class MdParserTest {
 
     private File mdFileWikilinks;
 
-    private String validHeader = "title=Title\nstatus=draft\ntype=post\n~~~~~~";
+    private String validHeader = "title=Title\nstatus=draft\ntype=post\n//~~~~~~";
 
-    private String invalidHeader = "title=Title\n~~~~~~";
+    private String invalidHeader = "title=Title\n//~~~~~~";
 
     private String extensions = "markdown.extensions";
 

@@ -32,8 +32,8 @@ public class ParserTest {
 	private File invalidAsciiDocFileWithoutHeader;
 	private File validAsciiDocFileWithHeaderInContent;
 	
-	private String validHeader = "title=This is a Title = This is a valid Title\nstatus=draft\ntype=post\ndate=2013-09-02\n~~~~~~";
-	private String invalidHeader = "title=This is a Title\n~~~~~~";
+	private String validHeader = "title=This is a Title = This is a valid Title\nstatus=draft\ntype=post\ndate=2013-09-02\n//~~~~~~";
+	private String invalidHeader = "title=This is a Title\n//~~~~~~";
 
   
 	
@@ -109,7 +109,7 @@ public class ParserTest {
 		out.println("type=post");
 		out.println("tags=tag1, tag2");
 		out.println("status=published");
-		out.println("~~~~~~");
+		out.println("//~~~~~~");
 		out.println("----");
 		out.close();
 	}
