@@ -11,14 +11,15 @@ RUN git clone -n https://github.com/jeci-sarl/jbake.git jbake \
 WORKDIR /root/jbake
 
 RUN mvn package -Dmaven.test.skip=true \
-    && unzip /root/jbake/dist/jbake-$JBAKE_VERSION-bin.zip -d /opt \
-    && rm -rf /root/jbake/  /root/.m2/
+    && unzip /root/jbake/dist/jbake-$JBAKE_VERSION-bin.zip -d /opt
+
+RUN mkdir -p "/data"
+WORKDIR /data
+RUN rm -rf /root/jbake/  /root/.m2/
 
 ENV JBAKE_HOME /opt/jbake-$JBAKE_VERSION/
 ENV PATH $JBAKE_HOME/bin:$PATH
 
-RUN mkdir -p "/data"
-WORKDIR /data
 
 RUN jbake -i
 
