@@ -5,6 +5,11 @@ WORKDIR /root
 
 ENV JBAKE_VERSION 2.4.0.1
 
+RUN apt-get update
+    && apt-get install -y --no-install-recommends \
+		      rsync \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN git clone -n https://github.com/jeci-sarl/jbake.git jbake \
     && cd jbake \
     && git checkout origin/v$JBAKE_VERSION
@@ -16,9 +21,6 @@ RUN mvn package -Dmaven.test.skip=true \
 RUN mkdir -p "/data"
 WORKDIR /data
 RUN rm -rf /root/jbake/
-
-#RUN rm -rf /root/.m2/
-# can't remove .m2 : Device or resource busy
 
 ENV JBAKE_HOME /opt/jbake-$JBAKE_VERSION/
 ENV PATH $JBAKE_HOME/bin:$PATH
