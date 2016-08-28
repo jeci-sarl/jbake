@@ -5,7 +5,7 @@ WORKDIR /root
 
 ENV JBAKE_VERSION 2.4.0.1
 
-RUN apt-get update
+RUN apt-get update \
     && apt-get install -y --no-install-recommends \
 		      rsync \
     && rm -rf /var/lib/apt/lists/*
