@@ -15,7 +15,10 @@ RUN mvn package -Dmaven.test.skip=true \
 
 RUN mkdir -p "/data"
 WORKDIR /data
-RUN rm -rf /root/jbake/  /root/.m2/
+RUN rm -rf /root/jbake/
+
+#RUN rm -rf /root/.m2/
+# can't remove .m2 : Device or resource busy
 
 ENV JBAKE_HOME /opt/jbake-$JBAKE_VERSION/
 ENV PATH $JBAKE_HOME/bin:$PATH
